@@ -5,31 +5,32 @@ var pauseButton = document.getElementById("pause");
 
 var resetButton = document.getElementById("reset");
 
-let timerTime = document.querySelector('#timer-display-time span');
+let timerTime = document.querySelectorAll('#timer-display-time #time span');
 
 (function () {
-    let hours = 0, minutes = 0, seconds = 0;
+    let minutes = 0, seconds = 0, centiSeconds = 0;
     let state = "";
 
     startButton.addEventListener('click', () => {
         if (state != "start") {
             state = "start";
             let stopClock = setInterval(() => {
-                if (state == "pause" || state == "reset")
+                if (state == "pause" || state == "reset"){
                     clearInterval(stopClock);
+                }
                 else {
-                    seconds++;
-                    if (seconds == 60) {
-                        seconds = 0;
-                        minutes++;
-                        if (minutes == 60) {
-                            minutes = 0;
-                            hours++;
+                    centiSeconds++;
+                    if (centiSeconds == 100) {
+                        centiSeconds = 0;
+                        seconds++;
+                        if (seconds == 60) {
+                            seconds = 0;
+                            minutes++;
                         }
                     }
                 }
                 showTime();
-            }, 1000);
+            }, 10);
         }
     })
 
@@ -40,19 +41,21 @@ let timerTime = document.querySelector('#timer-display-time span');
 
     resetButton.addEventListener('click', () => {
         state = "reset";
-        hours = 0;
         minutes = 0;
         seconds = 0;
+        centiSeconds = 0;
         showTime();
     })
-    function formatTime() {
-        let newHours = (hours < 10) ? "0" + hours : hours;
-        let newMinutes = (minutes < 10) ? "0" + minutes : minutes;
-        let newSeconds = (seconds < 10) ? "0" + seconds : seconds;
-        return `${newHours}:${newMinutes}:${newSeconds}`;
+
+    function formatTime(eachTime) {
+
+        return (eachTime < 10) ? "0" + eachTime : eachTime;
+
     }
     function showTime() {
-
-        timerTime.innerText = formatTime();
+        
+        timerTime[0].innerHTML = formatTime(minutes);
+        timerTime[1].innerHTML = formatTime(seconds);
+        timerTime[2].innerHTML = formatTime(centiSeconds);
     }
 })();

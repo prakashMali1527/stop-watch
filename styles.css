@@ -1,16 +1,51 @@
-body {
-    color: gray;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    background-color: cyan;
-    font-size: 2rem;
+:root{
+    --main-heading-color: white;
+    --main-heading-size: 4rem;
+
+    --clock-box-bg-color: #93d1ce;
+    --timer-display-bg-color:  #de892a;
+    --time-bg-color: #feeeb8;
+    --time-color: rgb(132, 32, 32);
+    
+
+    --btn-color: rgb(94, 63, 63);
+    --btn-bg-color: #93d1ce;
+    --btn-bg-hover-color: rgb(237, 245, 27);
+    --btn-border-color: rgb(47, 174, 159);
 }
 
-#container {
+/* common-class-styling */
+.flex-center{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+
+/* body styling */
+html,body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    background: url(./IMAGES/bg_clock.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* heading */
+#main-heading{
+    z-index: 10;
+    box-shadow: 6px 7px 15px white ;
+    font-size: var(--main-heading-size);
+    color: var(--main-heading-color);
+}
+
+/* clock - container */
+#clock-container {
+    margin-top: 40px;
+    flex-direction: column-reverse; 
     width: 100%;
     height: 100%;
 }
@@ -18,64 +53,81 @@ body {
 #timerClock {
     display: flex;
     flex-direction: column;
-    width: 55%;
-    height: 55%;
+    width: 40%;
+    height: 60%;
+    min-width: 400px;
+    min-height: 300px;
 }
 
 .buttons {
     display: flex;
     justify-content: space-around;
-    /* height: 15%; */
-    /* background-color: purple; */
 }
 
-.buttons button {
-    border-color: aliceblue;
-    background-color: rgb(224, 224, 172);
+.buttons div{
+    cursor: pointer;
+    font-size: 1.8rem;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid var(--btn-border-color);
     border-radius: 20px;
-    height: 8vh;
+    
+    color: var(--btn-color);
+    background-color: var(--btn-bg-color);
+    
 }
 
-.buttons button:hover {
-    background-color: rgb(151, 221, 209);
+.buttons div:hover {
+    transform: scale(1.05,1.05);
+    background-color: var(--btn-bg-hover-color);
 }
 
 #clock-box {
-    border-style: solid;
-    border-color: aliceblue;
-    border-width: 2px;
+    background-color: var(--clock-box-bg-color);
     border-radius: 20px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(224, 224, 172);
     width: 100%;
     height: 100%;
 }
 
 #timer-display {
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(175, 132, 79);
     width: 80%;
-    height: 60%;
+    height: 70%;
+
+    padding: 10px;
+
+    border-radius: 15px;
+    background-color: var(--timer-display-bg-color);
 }
 
 #timer-display-time {
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(116, 116, 162);
-    width: 90%;
+    flex-direction: column;
+    width: 80%;
     height: 70%;
+
+    border-radius: 15px;
+    padding: 2px 20px;
+    background-color: var(--time-bg-color);
 }
 
-#timer-display-time span {
-    font-size: 10vw;
-    color: aqua;
+#timer-display-time #time {
+    font-size: 4.6rem;
     font-weight: 600;
+    font-family: 'serif', sans-serif;
+    color: var(--time-color);
+}
+
+#timer-display-time #time #centi-seconds{
+    color: rgb(180, 229, 18);
+}
+
+@media screen and (max-width: 450px){
+    #main-heading{
+        font-size: 3rem;
+    }
+    #timerClock{
+        min-width: 300px;
+    }
+    #timer-display-time #time {
+        font-size: 3.5rem;
+    }
 }

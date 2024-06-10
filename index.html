@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timer</title>
     <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-    <div id="container" class="innerElements-position-center">
-        <h1> STOP WATCH </h1>
+    <div id="clock-container" class="flex-center">
+        <h1 id="main-heading"> STOP WATCH </h1>
         <div id="timerClock">
             <div class="buttons">
-                <button id="start">Start Button</button>
-                <button id="pause">Pause Button</button>
-                <button id="reset">Reset Button</button>
+                <div id="start">Start </div>
+                <div id="pause">Pause </div>
+                <div id="reset">Reset </div>
             </div>
-            <div id="clock-box" class="innerElements-position-center">
-                <div id="timer-display" class="innerElements-position-center">
-                    <div id="timer-display-time">
-                        <span>00:00:00</span>
+            <div id="clock-box" class="flex-center">
+                <div id="timer-display" class="flex-center">
+                    <div id="timer-display-time" class="flex-center">
+                        <span id="time">
+                            <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="centi-seconds">00</span>
+                        </span>
                     </div>
                 </div>
             </div>
